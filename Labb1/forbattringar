@@ -1,4 +1,9 @@
+Problem:
 Skapar man ny kontakt hamnar man på senast markerade fältet, inter översta.
 Skapar man ny kontakt markeras den nya och senast markerade i listvyen.
-Listvyen sorteras efter efternamn.
-Listens bredd borde justeras automatiskt.
+Ändrar man fält måste man tabba eller klicka i en ny ruta för att det ska sparas, innan man väljer en annan kontakt (eller skapar en ny).
+
+Förbättringar:
+Sökfunktion
+Välja om man vill sortera efter för- eller efternamn.
+Annan info, tex födelsedag, bild, Facebook, Skype m.m

@@ -107,11 +107,16 @@ public class AddressBookView extends javax.swing.JFrame {
         });
         jToolBar1.add(deleteButton);
 
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(437, 248));
+
         contactsList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        contactsList.setMaximumSize(new java.awt.Dimension(120, 85));
+        contactsList.setMinimumSize(new java.awt.Dimension(120, 85));
+        contactsList.setPreferredSize(new java.awt.Dimension(120, 85));
         contactsList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 contactsListValueChanged(evt);
@@ -120,6 +125,8 @@ public class AddressBookView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(contactsList);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 244));
 
         jLabel1.setText(bundle1.getString("firstNameLabel.text")); // NOI18N
 
@@ -357,7 +364,7 @@ public class AddressBookView extends javax.swing.JFrame {
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -365,7 +372,7 @@ public class AddressBookView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
