@@ -14,7 +14,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
     public RecipeSearchView() {
         initComponents();
         controller = new RecipeSearchController(ingredientDropDownList, kitchenDropDownList, 
-                levelDropDownList, priceSlider, timeSpinner, searchList);
+                levelDropDownList, priceSlider, timeSpinner, searchList, recipeNameLabel);
         
         controller.init();
     }
@@ -93,7 +93,11 @@ public class RecipeSearchView extends javax.swing.JFrame {
             }
         });
 
-        priceSlider.setMaximum(2000);
+        priceSlider.setMajorTickSpacing(10);
+        priceSlider.setMaximum(200);
+        priceSlider.setMinorTickSpacing(10);
+        priceSlider.setPaintTicks(true);
+        priceSlider.setSnapToTicks(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -156,7 +160,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
                     .addComponent(timeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchButton)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sök", jPanel1);
