@@ -93,7 +93,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
             }
         });
 
-        priceSlider.setMaximum(1000000);
+        priceSlider.setMaximum(2000);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

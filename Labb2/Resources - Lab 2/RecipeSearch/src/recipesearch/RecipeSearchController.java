@@ -5,7 +5,10 @@
  */
 package recipesearch;
 
+
+import java.util.List;
 import javax.swing.*;
+import se.chalmers.ait.dat215.lab2.*;
 
 /**
  *
@@ -18,6 +21,7 @@ public class RecipeSearchController {
     private JSlider priceSlider;
     private JButton searchButton;
     private JSpinner timeSpinner;
+    private RecipeDatabase db;
     
     
     public RecipeSearchController(JComboBox ingredientDropDownList, 
@@ -44,6 +48,12 @@ public class RecipeSearchController {
         int maxTime = (Integer) timeSpinner.getValue();
         System.out.println("## New Search ##\nmain ingredient: " + mainIngredient + "\nkithen: " + kitchen 
                 + "\nlevel: " + level + "\nmaxPrice: " + maxPrice + "\nmaxTime: " + maxTime);
+        
+        db = RecipeDatabase.getSharedInstance();
+        
+        List<Recipe> recipe = db.search(new SearchFilter(level,maxTime,kitchen,maxPrice,mainIngredient));
+        
+
         
     
     }

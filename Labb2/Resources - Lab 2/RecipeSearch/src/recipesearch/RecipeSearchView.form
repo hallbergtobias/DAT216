@@ -242,7 +242,7 @@
             </Component>
             <Component class="javax.swing.JSlider" name="priceSlider">
               <Properties>
-                <Property name="maximum" type="int" value="1000000"/>
+                <Property name="maximum" type="int" value="2000"/>
               </Properties>
             </Component>
           </SubComponents>
