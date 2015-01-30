@@ -6,6 +6,7 @@
 package recipesearch;
 
 
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.*;
 import se.chalmers.ait.dat215.lab2.*;
@@ -51,8 +52,13 @@ public class RecipeSearchController {
         
         db = RecipeDatabase.getSharedInstance();
         
-        List<Recipe> recipe = db.search(new SearchFilter(level,maxTime,kitchen,maxPrice,mainIngredient));
+        List<Recipe> recipes = db.search(new SearchFilter(level,maxTime,kitchen,maxPrice,mainIngredient));
+        Iterator<Recipe> iter = recipes.iterator();
         
+        while(iter.hasNext()){
+            Recipe recipe = iter.next();
+            System.out.println(recipe.getName());
+        }
 
         
     
