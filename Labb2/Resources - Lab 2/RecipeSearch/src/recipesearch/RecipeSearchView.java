@@ -14,7 +14,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
     public RecipeSearchView() {
         initComponents();
         controller = new RecipeSearchController(ingredientDropDownList, kitchenDropDownList, 
-                levelDropDownList, priceSlider, timeSpinner);
+                levelDropDownList, priceSlider, timeSpinner, searchList);
         
         controller.init();
     }
@@ -54,7 +54,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
         jList2 = new javax.swing.JList();
         descriptionLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        searchList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("recipesearch/resources/RecipeSearch"); // NOI18N
@@ -223,12 +223,12 @@ public class RecipeSearchView extends javax.swing.JFrame {
 
         jSplitPane1.setRightComponent(jPanel3);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        searchList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(searchList);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
@@ -288,7 +288,6 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -303,6 +302,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JSlider priceSlider;
     private javax.swing.JLabel recipeNameLabel;
     private javax.swing.JButton searchButton;
+    private javax.swing.JList searchList;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JSpinner timeSpinner;
     // End of variables declaration//GEN-END:variables

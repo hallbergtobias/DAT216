@@ -23,16 +23,19 @@ public class RecipeSearchController {
     private JButton searchButton;
     private JSpinner timeSpinner;
     private RecipeDatabase db;
+    private JList sourceList;
     
     
     public RecipeSearchController(JComboBox ingredientDropDownList, 
             JComboBox kitchenDropDownList, JComboBox levelDropDownList, 
-            JSlider priceSlider, JSpinner timeSpinner){
+            JSlider priceSlider, JSpinner timeSpinner, JList sourceList){
         this.ingredientDropDownList = ingredientDropDownList;
         this.kitchenDropDownList = kitchenDropDownList;
         this.levelDropDownList = levelDropDownList;
         this.priceSlider = priceSlider;
         this.timeSpinner = timeSpinner;
+        this.sourceList = sourceList;
+        
         
     }
     
@@ -55,9 +58,13 @@ public class RecipeSearchController {
         List<Recipe> recipes = db.search(new SearchFilter(level,maxTime,kitchen,maxPrice,mainIngredient));
         Iterator<Recipe> iter = recipes.iterator();
         
+        DefaultListModel listModel = new DefaultListModel();
+        sourceList.setModel(listModel);
+        
         while(iter.hasNext()){
             Recipe recipe = iter.next();
-            System.out.println(recipe.getName());
+            listModel.addElement(recipe.getName() + " - " + 
+                    recipe.getTime() + "min - " + recipe.getPrice() + "kr");
         }
 
         
