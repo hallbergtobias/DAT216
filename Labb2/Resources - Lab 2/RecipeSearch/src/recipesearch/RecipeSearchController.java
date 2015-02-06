@@ -36,14 +36,15 @@ public class RecipeSearchController {
     private JLabel portionLabel;
     private JTextArea ingredientText;
     private JLabel recipeImage;
-    private DefaultListModel listModel;
+    private JLabel levelLabel;
+    private DefaultListModel listModel = new DefaultListModel();
     
     
     public RecipeSearchController(JComboBox ingredientDropDownList, 
             JComboBox kitchenDropDownList, JComboBox levelDropDownList, 
             JSlider priceSlider, JSlider timeSlider, JList searchList, 
             JLabel recipeNameLabel, JLabel timeLabel, JLabel portionLabel, JTextArea descriptionText,
-    JTextArea ingredientText, JLabel recipeImage){
+    JTextArea ingredientText, JLabel recipeImage, JLabel levelLabel){
         this.ingredientDropDownList = ingredientDropDownList;
         this.kitchenDropDownList = kitchenDropDownList;
         this.levelDropDownList = levelDropDownList;
@@ -56,16 +57,23 @@ public class RecipeSearchController {
         this.descriptionText = descriptionText;
         this.ingredientText = ingredientText;
         this.recipeImage = recipeImage;
+        this.levelLabel = levelLabel;
         
         init();
     }
     
-    public void init(){
-        listModel = new DefaultListModel();
+    private void init(){
         searchList.setModel(listModel);
+        searchList.addListSelectionListener(new MyListSelectionListener());
+
     }
     
-    public String validateParam(JComboBox b){
+    /**
+     * Checks if "Alla" is selected.
+     * @param b A drop down list
+     * @return if "Alla" is selected returns null.
+     */
+    private String validateParam(JComboBox b){
         String s = (String) b.getSelectedItem();
         if (s.equals("Alla")){
             return null;
@@ -74,6 +82,9 @@ public class RecipeSearchController {
         }
     }
     
+    /**
+     * Search for recipe
+     */
     public void searchRecipe(){
         String mainIngredient = validateParam(ingredientDropDownList);
         String kitchen = validateParam(kitchenDropDownList);
@@ -91,38 +102,45 @@ public class RecipeSearchController {
     
    
     
-    
-    public void presentSearchResult(List<Recipe> recipes){
-        
-        Iterator<Recipe> iter = recipes.iterator();
-        
+    /**
+     * Presents search result in a list.
+     * @param recipes Sorted list of recipes from database.
+     */
+    private void presentSearchResult(List<Recipe> recipes){
         listModel.clear();
-        
-        searchList.addListSelectionListener(new MyListSelectionListener());
+        Iterator<Recipe> iter = recipes.iterator();
         
         while(iter.hasNext()){
             Recipe recipe = iter.next();
+            
+            //only adds recipes with a match > 50
+            if(recipe.getMatch()<50){ 
+                break;
+            }
             listModel.addElement(recipe.getName() + "\t\t" + 
                     recipe.getTime() + "min \t" + recipe.getPrice() + "kr");
         }
-        
         searchList.setSelectedIndex(0);
-    
     }
     
-    public void presentRecipe(Recipe r){
+    /**
+     * Presents selected recipe.
+     * @param r Selected recipe.
+     */
+    private void presentRecipe(Recipe r){
         
-        System.out.println(r.getName());
+        
         recipeNameLabel.setText(r.getName());
         timeLabel.setText(Integer.toString(r.getTime()) + " min");
         portionLabel.setText(Integer.toString(r.getServings()) + " portioner");
         descriptionText.setText(r.getDescription());
+        levelLabel.setText(r.getDifficulty());
         ImageIcon pic = r.getImage(recipeImage.getWidth(), recipeImage.getHeight());
         recipeImage.setIcon(pic);
 
         List<Ingredient> ingredients = r.getIngredients();
         Iterator<Ingredient> iter = ingredients.iterator();
-
+        
         ingredientText.setText("");
         while(iter.hasNext()){
             Ingredient ingredient = iter.next();
@@ -131,12 +149,21 @@ public class RecipeSearchController {
         }
     }
     
+    /**
+     * Listener for search list
+     */
     class MyListSelectionListener  implements ListSelectionListener{
+        /**
+         * Runs when a recipe is selected from search result list
+         * @param e ListSelectionEvent
+         */
         public void valueChanged(ListSelectionEvent e){
             JList listan = (JList) e.getSource();
             int i = listan.getSelectedIndex();
+            if (i>=0){
             Recipe r = recipes.get(i);
             presentRecipe(r);
+            }
         }
     }
 }

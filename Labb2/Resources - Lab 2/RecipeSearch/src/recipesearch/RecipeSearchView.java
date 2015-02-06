@@ -15,10 +15,10 @@ public class RecipeSearchView extends javax.swing.JFrame {
         initComponents();
         controller = new RecipeSearchController(ingredientDropDownList, kitchenDropDownList, 
                 levelDropDownList, priceSlider, timeSlider, searchList, 
-                recipeNameLabel, timeLabel, portionLabel, descriptionText, ingredientsText, recipeImage);
+                recipeNameLabel, timeLabel, portionLabel, descriptionText, ingredientsText, recipeImage,levelLabel);
         
         jTabbedPane1.setEnabledAt(1, false);
-        controller.init();
+        //controller.init();
         
         sliderPriceLabel.setText(priceSlider.getValue() + " kr");                                       
         sliderTimeLabel.setText(timeSlider.getValue() + " min");
@@ -59,6 +59,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
         descriptionText = new javax.swing.JTextArea();
         ingredientsText = new javax.swing.JTextArea();
         recipeImage = new javax.swing.JLabel();
+        levelLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         searchList = new javax.swing.JList();
 
@@ -230,6 +231,8 @@ public class RecipeSearchView extends javax.swing.JFrame {
         ingredientsText.setFocusable(false);
         ingredientsText.setOpaque(false);
 
+        levelLabel.setText("jLabel7");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -240,11 +243,12 @@ public class RecipeSearchView extends javax.swing.JFrame {
                     .addComponent(descriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(timeLabel)
                     .addComponent(portionLabel)
-                    .addComponent(recipeNameLabel))
+                    .addComponent(recipeNameLabel)
+                    .addComponent(levelLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ingredientsText, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                    .addComponent(recipeImage, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
+                    .addComponent(ingredientsText, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(recipeImage, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,12 +260,14 @@ public class RecipeSearchView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(timeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(portionLabel))
+                        .addComponent(portionLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(levelLabel))
                     .addComponent(recipeImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(descriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ingredientsText, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ingredientsText, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addComponent(descriptionText))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,7 +328,9 @@ public class RecipeSearchView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-       jTabbedPane1.setEnabledAt(1, true);
+       if(!jTabbedPane1.isEnabledAt(1)){
+        jTabbedPane1.setEnabledAt(1, true);
+       }
         controller.searchRecipe();
        jTabbedPane1.setSelectedIndex(1);
        
@@ -355,6 +363,7 @@ public class RecipeSearchView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox kitchenDropDownList;
     private javax.swing.JComboBox levelDropDownList;
+    private javax.swing.JLabel levelLabel;
     private javax.swing.JLabel portionLabel;
     private javax.swing.JSlider priceSlider;
     private javax.swing.JLabel recipeImage;
